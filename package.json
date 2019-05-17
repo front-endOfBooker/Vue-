@@ -1,0 +1,43 @@
+{
+  "name": "vue-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --open --hot",
+    "build": "webpack --progress --hide-modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/front-endOfBooker/Vue-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/front-endOfBooker/Vue-/issues"
+  },
+  "homepage": "https://github.com/front-endOfBooker/Vue-#readme",
+  "dependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-runtime": "^6.26.0",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.6",
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.x",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
+    "vue-loader": "^15.7.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack-dev-server": "^3.3.1"
+  }
+}
