@@ -1,7 +1,7 @@
 <template>
   <div>
-    {{message}}
-    <img src="../assets/img/avatar.png" />
+    <!-- {{message}}
+    <img src="../assets/img/avatar.png" /> -->
     <router-view></router-view>
   </div>
 </template>
@@ -15,7 +15,6 @@
       }
     },
     mounted() {
-      console.log('booker')
       this.getDateAct()
     },
     methods: {

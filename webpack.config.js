@@ -19,8 +19,13 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   devServer: {
-    historyApiFallback: true,
+    historyApiFallback: {
+      rewrites: [
+        // { from: /./, to: '/error.html' }
+      ]
+    },
     port: 8090,
+    compress: true,
     overlay: true
   },
   module: {

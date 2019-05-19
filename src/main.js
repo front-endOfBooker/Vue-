@@ -6,15 +6,14 @@ import '../assets/css/base.css';
 import routes from './router'
 import VueRouter from 'vue-router';
 
+import AppVue from './AppVue'
 
-Vue.use(VueRouter)
+
+Vue.use(AppVue)
 
 const router = new VueRouter({
   routes,
 })
-
-
-
 
 // Vue.component('my-img', {
 //   template: '<img :src="url" />',
@@ -31,3 +30,4 @@ new Vue({
   template: '<App />',
   components: { App }
 })
+
