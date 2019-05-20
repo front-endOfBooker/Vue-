@@ -1,16 +1,23 @@
 var path = require('path');
+var webpack = require('webpack');
 var VueLoaderPlugin = require('vue-loader/lib/plugin');
 // 引入html自动插入打包好的文件
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 // 提取css(extract-text-webpack-plugin目前自动安装的是3.0.2版本,无法适配webpack4.x,需要安装extract-text-webpack-plugin@next)
 var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+// 清除dist
+var CleanWebpackPlugin = require('clean-webpack-plugin');
+// 压缩css
+// var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// 压缩js
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
     main: path.join(__dirname, '/src/main.js')
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle_[hash:4].js',
     path: path.join(__dirname, '/dist/'),
     publicPath: '/dist/'
   },
@@ -76,18 +83,29 @@ module.exports = {
     }),
     new ExtractTextWebpackPlugin({
       filename: '[name]_[hash:4].css'
-    })
+    }),
+    new CleanWebpackPlugin(),
+    // new OptimizeCssAssetsPlugin({
+    //   cssProcessor: require('cssnano'),
+    //   cssProcessorOptions: {
+    //     discardComments: {
+    //       removeAll: true
+    //     }
+    //   },
+    //   canPrint: true
+    // })
   ]
 }
 
-// if (process.env.NODE_ENV === 'production') {
-//   module.exports.devtool = '#source-map';
-//   module.exports.plugins = (module.exports.plugins || []).concat([
-//     new webpack.DefinePlugin({
-//       'process_env': {
-//         NODE_ENV: '"production"'
-//       }
-//     }),
-//     new webpack.optimize.UglifyJsPlugin(),
-//   ])
-// }
+if (process.env.NODE_ENV === 'production') {
+  module.exports.devtool = '#source-map';
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    // webpack4.x之后,uglifyjs-webpack-plugin已不是webpack的内置,需要单独使用
+    new UglifyJsPlugin(),
+  ])
+}
