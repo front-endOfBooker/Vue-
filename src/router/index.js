@@ -11,17 +11,17 @@ export default [
     redirect: '/index',
     children: [
       {
-        path: '/index',
+        path: 'index',
         component: index,
         name: 'index'
       },
       {
-        path: '/demo',
+        path: 'demo',
         component: demo,
         name: 'demo'
       },
       {
-        path: '/test',
+        path: 'test',
         component: test,
         name: 'test'
       },

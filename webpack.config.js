@@ -1,6 +1,9 @@
-var path = require('path')
-var webpack = require('webpack')
+var path = require('path');
 var VueLoaderPlugin = require('vue-loader/lib/plugin');
+// 引入html自动插入打包好的文件
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+// 提取css(extract-text-webpack-plugin目前自动安装的是3.0.2版本,无法适配webpack4.x,需要安装extract-text-webpack-plugin@next)
+var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -19,11 +22,9 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   devServer: {
-    historyApiFallback: {
-      rewrites: [
-        // { from: /./, to: '/error.html' }
-      ]
-    },
+    // 服务器资源的根目录,默认值为'/'
+    contentBase: path.join(__dirname, "/dist/"),
+    historyApiFallback: true,
     port: 8090,
     compress: true,
     overlay: true
@@ -41,14 +42,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: "vue-style-loader"
-          },
-          {
-            loader: "css-loader"
-          }
-        ]
+        use: ExtractTextWebpackPlugin.extract({
+          fallback: 'vue-style-loader',
+          use: 'css-loader',
+        })
       },
       {
         test: /\.js$/,
@@ -71,7 +68,15 @@ module.exports = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.join(__dirname, '/index.html'),
+      inject: 'body'
+    }),
+    new ExtractTextWebpackPlugin({
+      filename: '[name]_[hash:4].css'
+    })
   ]
 }
 

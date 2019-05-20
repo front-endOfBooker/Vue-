@@ -2,6 +2,7 @@ import Vue from 'vue';
 import 'babel-polyfill';
 import App from '../src/app'
 import '../assets/css/base.css';
+import '../assets/css/demo.css';
 
 import routes from './router'
 import VueRouter from 'vue-router';
