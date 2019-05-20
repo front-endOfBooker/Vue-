@@ -19,7 +19,8 @@ module.exports = {
   output: {
     filename: 'bundle_[hash:4].js',
     path: path.join(__dirname, '/dist/'),
-    publicPath: '/dist/'
+    // 打包的静态文件引用的基础路径
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -29,12 +30,16 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   devServer: {
-    // 服务器资源的根目录,默认值为'/'
-    contentBase: path.join(__dirname, "/dist/"),
+    // 非webpack打包的静态资源目录服务器资源的根目录,默认值为'/'
+    contentBase: '/',
+    // dev中打包后文件在内存的位置
+    publicPath: '/',
     historyApiFallback: true,
     port: 8090,
     compress: true,
-    overlay: true
+    overlay: true,
+    inline: true,
+    hot: true
   },
   module: {
     rules: [
@@ -84,7 +89,6 @@ module.exports = {
     new ExtractTextWebpackPlugin({
       filename: '[name]_[hash:4].css'
     }),
-    new CleanWebpackPlugin(),
     // new OptimizeCssAssetsPlugin({
     //   cssProcessor: require('cssnano'),
     //   cssProcessorOptions: {
@@ -107,5 +111,6 @@ if (process.env.NODE_ENV === 'production') {
     }),
     // webpack4.x之后,uglifyjs-webpack-plugin已不是webpack的内置,需要单独使用
     new UglifyJsPlugin(),
+    new CleanWebpackPlugin(),
   ])
 }
