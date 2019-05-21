@@ -84,11 +84,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(__dirname, '/index.html'),
-      inject: 'body'
+      inject: 'body',
+      title: 'VueComponents'
     }),
     new ExtractTextWebpackPlugin({
       filename: '[name]_[hash:4].css'
     }),
+    new webpack.HotModuleReplacementPlugin()
     // new OptimizeCssAssetsPlugin({
     //   cssProcessor: require('cssnano'),
     //   cssProcessorOptions: {
