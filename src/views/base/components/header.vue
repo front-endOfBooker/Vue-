@@ -1,11 +1,15 @@
 <template>
   <div class="app">
-    <span class="back" @click="goBack">&lt;</span>
+    <span v-if="showBack" class="back" @click="goBack">&lt;</span>
   </div>
 </template>
 
 <script>
   export default {
+    props: {
+      showBack: Boolean,
+      default: true
+    },
     methods: {
       goBack: function() {
         history.go(-1)
@@ -18,11 +22,12 @@
 .app {
   width: 100%;
   background-color: #fff;
-  /* text-align: center; */
+  box-shadow: 1px 1px 2px #d0d0d0;
   height: 40px;
   line-height: 40px;
   box-sizing: border-box;
   padding: 0 10px;
+  margin-bottom: 10px;
 }
 .app .back {
   display: inline-block;

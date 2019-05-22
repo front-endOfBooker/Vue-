@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view></router-view>
+    hello web
   </div>
 </template>
 
@@ -10,7 +10,6 @@
   }
 </script>
 
-<style scoped src="../../assets/css/index.css"></style>
 <style scoped>
 
 </style>

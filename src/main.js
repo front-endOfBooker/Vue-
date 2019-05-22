@@ -8,7 +8,7 @@ import routes from './router'
 import VueRouter from 'vue-router';
 
 import AppVue from './AppVue'
-
+console.log(routes)
 
 Vue.use(AppVue)
 

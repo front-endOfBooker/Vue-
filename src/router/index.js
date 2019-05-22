@@ -2,16 +2,19 @@ import App from '../app.vue';
 import index from '../views/base/index.vue';
 import list from '../views/base/list.vue';
 import demo from '../views/demo.vue';
-import web from '../views/web.vue';
-import mobile from '../views/mobile.vue';
 import error from '../views/base/error.vue';
 import building from '../views/base/building.vue';
 
-export default [
+import mobile from './mobile';
+import web from './web';
+
+
+let routes = [
   {
     path: '/',
     component: index,
     redirect: '/list',
+    name: 'Index',
     children: [
       {
         path: 'list',
@@ -22,16 +25,6 @@ export default [
         path: 'demo',
         component: demo,
         name: 'demo'
-      },
-      {
-        path: 'web',
-        component: web,
-        name: 'web'
-      },
-      {
-        path: 'mobile',
-        component: mobile,
-        name: 'mobile'
       },
       {
         path: 'building',
@@ -46,3 +39,6 @@ export default [
     ]
   },
 ]
+
+routes[0].children = [...routes[0].children, ...mobile, ...web]
+export default routes

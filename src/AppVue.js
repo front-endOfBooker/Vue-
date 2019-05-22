@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import VHeader from './views/components/header.vue'
+import VHeader from './views/base/components/header.vue'
 
 let AppVue = {}
 
