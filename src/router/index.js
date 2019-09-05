@@ -8,6 +8,8 @@ import building from '../views/base/building.vue';
 import mobile from './mobile';
 import web from './web';
 
+import chart from '../views/web/chart.vue';
+
 
 let routes = [
   {
@@ -30,6 +32,11 @@ let routes = [
         path: 'building',
         component: building,
         name: 'building'
+      },
+      {
+        path: 'chart',
+        component: chart,
+        name: 'chart'
       },
       // {
       //   path: '/*',
